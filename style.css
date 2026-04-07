@@ -1,0 +1,41 @@
+body {
+    font-family: sans-serif;
+    background-color: var(--tg-theme-bg-color);
+    color: var(--tg-theme-text-color);
+    margin: 0;
+    padding: 20px;
+}
+
+.item-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.item {
+    background-color: var(--tg-theme-secondary-bg-color);
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.btn {
+    background-color: var(--tg-theme-button-color);
+    color: var(--tg-theme-button-text-color);
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.buy-btn {
+    position: fixed;
+    bottom: 20px;
+    width: calc(100% - 40px);
+    padding: 15px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    display: none; /* Savat bo'sh bo'lsa ko'rinmaydi */
+}
