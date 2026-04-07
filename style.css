@@ -1,41 +1,101 @@
+:root {
+    --main-bg: var(--tg-theme-bg-color, #ffffff);
+    --text-color: var(--tg-theme-text-color, #222222);
+    --hint-color: var(--tg-theme-hint-color, #999999);
+    --button-bg: var(--tg-theme-button-color, #3390ec);
+    --button-text: var(--tg-theme-button-text-color, #ffffff);
+    --secondary-bg: var(--tg-theme-secondary-bg-color, #f4f4f5);
+}
+
 body {
-    font-family: sans-serif;
-    background-color: var(--tg-theme-bg-color);
-    color: var(--tg-theme-text-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--main-bg);
+    color: var(--text-color);
     margin: 0;
-    padding: 20px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: var(--button-bg);
 }
 
 .item-list {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Ikki ustunli ko'rinish */
     gap: 15px;
+    width: 100%;
+    max-width: 500px;
 }
 
 .item {
-    background-color: var(--tg-theme-secondary-bg-color);
-    padding: 10px;
+    background-color: var(--secondary-bg);
+    border-radius: 15px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.item:active {
+    transform: scale(0.95);
+}
+
+.item img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 10px;
     border-radius: 10px;
+}
+
+.item p {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 5px 0;
     text-align: center;
+    height: 40px; /* Matn uzun bo'lsa ham bir xil turadi */
+    overflow: hidden;
+}
+
+.price {
+    color: var(--button-bg);
+    font-weight: 800;
+    margin-bottom: 10px;
 }
 
 .btn {
-    background-color: var(--tg-theme-button-color);
-    color: var(--tg-theme-button-text-color);
+    width: 100%;
+    background-color: var(--button-bg);
+    color: var(--button-text);
     border: none;
-    padding: 10px;
-    border-radius: 5px;
+    padding: 8px;
+    border-radius: 10px;
+    font-weight: bold;
     cursor: pointer;
 }
 
 .buy-btn {
     position: fixed;
     bottom: 20px;
-    width: calc(100% - 40px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
     padding: 15px;
-    background-color: #28a745;
+    background-color: #31b545;
     color: white;
     border: none;
-    border-radius: 10px;
-    display: none; /* Savat bo'sh bo'lsa ko'rinmaydi */
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    display: none;
+    z-index: 100;
 }
