@@ -2,7 +2,7 @@ import telebot
 import json
 from telebot import types
 
-API_TOKEN = '8638019976:AAHWHlc50f1TJ_A84e64rLY2PqQupH1PVi0' # O'zingizning to'liq tokeningiz
+API_TOKEN = '8638019976:AAETkFF1FJXDIPevnKrWCrcb1oNVloyB0p0' # O'zingizning to'liq tokeningiz
 
 bot = telebot.TeleBot(API_TOKEN)
 
