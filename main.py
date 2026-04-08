@@ -21,25 +21,29 @@ def start(message):
     bot.send_message(message.chat.id, "Xush kelibsiz!", reply_markup=markup)
 
 @bot.message_handler(content_types=['web_app_data'])
-def get_data(message):
+def get_data(message): # 'message' mana shu yerda aniqlanishi shart
     try:
         # Web App'dan kelgan JSON ma'lumotni o'qiymiz
         data = json.loads(message.web_app_data.data)
-        
+
+        # Sana formatlash (import datetime yuqorida bo'lishi kerak)
+        formatted_date = datetime.fromtimestamp(message.date).strftime('%d.%m.%Y %H:%M')
+
         # Buyurtma matnini shakllantiramiz
         res_text = (
             f"✅ Yangi Buyurtma qabul qilindi!\n\n"
             f"💰 Jami summa: {data['total']} $\n"
             f"👤 Mijoz: {message.from_user.first_name}\n"
-            f"📅 Sana: {message.date}"
+            f"📅 Sana: {formatted_date}"
         )
-        
-        # Foydalanuvchiga tasdiq xabarini yuboramiz
-        bot.send_message(message.chat.id, res_text, parse_mode="Markdown")
-        
-    except Exception as e:
-        bot.send_message(message.chat.id, "⚠️ Ma'lumotni qayta ishlashda xatolik yuz berdi.")
 
+        # Foydalanuvchiga tasdiq xabarini yuboramiz
+        bot.send_message(message.chat.id, res_text)
+
+    except Exception as e:
+        # Xatolik yuz bersa, shu yer ishlaydi
+        bot.send_message(message.chat.id, f"⚠️ Ma'lumotni qayta ishlashda xatolik: {e}")
+
+# Botni ishga tushirish (bular funksiyadan tashqarida, eng chetda turishi kerak)
 print("Bot ishga tushdi...")
 bot.infinity_polling()
-
