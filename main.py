@@ -1,3 +1,4 @@
+import time
 import os
 import telebot
 import json
@@ -43,9 +44,15 @@ def get_data(message): # 'message' mana shu yerda aniqlanishi shart
     except Exception as e:
         # Xatolik yuz bersa, shu yer ishlaydi
         bot.send_message(message.chat.id, f"⚠️ Ma'lumotni qayta ishlashda xatolik: {e}")
-
-# Botni ishga tushirish (bular funksiyadan tashqarida, eng chetda turishi kerak)
-print("Bot ishga tushdi...")
-bot.infinity_polling()
 # Kodingizning eng oxiridagi qismni shunday o'zgartiring:
 bot.infinity_polling(timeout=10, long_polling_timeout=5)
+# Botni ishga tushirish (bular funksiyadan tashqarida, eng chetda turishi kerak)
+
+
+while True:
+    try:
+        print("Bot ishga tushdi...")
+        bot.infinity_polling(timeout=10, long_polling_timeout=5)
+    except Exception as e:
+        print(f"Xatolik yuz berdi: {e}")
+        time.sleep(5) # 5 soniya kutib, qayta ulanishga urinadi
