@@ -33,7 +33,7 @@ def get_data(message): # 'message' mana shu yerda aniqlanishi shart
         res_text = (
             f"✅ Yangi Buyurtma qabul qilindi!\n\n"
             f"💰 Jami summa: {data['total']} $\n"
-            f"👤 Mijoz: {message.from_user.first_name}\n"
+            f"👤 Mijoz: {message.from_user.first_name}\n" # '0' ni 'message.from_user.first_name' ga o'zgartiring
             f"📅 Sana: {formatted_date}"
         )
 
