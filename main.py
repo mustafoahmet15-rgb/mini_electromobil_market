@@ -13,7 +13,7 @@ bot = telebot.TeleBot(token)
 def start(message):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
     # GitHub manzilingizni tekshirib yozing:
-    web_app = types.WebAppInfo(url="https://github.com/mustafoahmet15-rgb/mini_electromobil_market")
+    web_app = types.WebAppInfo(url="https://mustafoahmet15-rgb.github.io/mini_electromobil_market/")
     btn = types.KeyboardButton("Do'konni ochish 🛒", web_app=web_app)
     markup.add(btn)
     bot.send_message(message.chat.id, "Xush kelibsiz!", reply_markup=markup)
