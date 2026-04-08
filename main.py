@@ -1,16 +1,19 @@
+import os
 import telebot
 import json
 from telebot import types
+from dotenv import load_dotenv
 
-API_TOKEN = '8638019976:AAETkFF1FJXDIPevnKrWCrcb1oNVloyB0p0' # O'zingizning to'liq tokeningiz
-
-bot = telebot.TeleBot(API_TOKEN)
+# .env faylidan tokenni o'qish
+load_dotenv()
+token = os.getenv("BOT_TOKEN")
+bot = telebot.TeleBot(token)
 
 @bot.message_handler(commands=['start'])
 def start(message):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
     # GitHub manzilingizni tekshirib yozing:
-    web_app = types.WebAppInfo(url="https://sizning_nikingiz.github.io/miniWep/")
+    web_app = types.WebAppInfo(url="https://github.com/mustafoahmet15-rgb/mini_electromobil_market")
     btn = types.KeyboardButton("Do'konni ochish 🛒", web_app=web_app)
     markup.add(btn)
     bot.send_message(message.chat.id, "Xush kelibsiz!", reply_markup=markup)
