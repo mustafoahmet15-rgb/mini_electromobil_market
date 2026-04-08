@@ -47,3 +47,5 @@ def get_data(message): # 'message' mana shu yerda aniqlanishi shart
 # Botni ishga tushirish (bular funksiyadan tashqarida, eng chetda turishi kerak)
 print("Bot ishga tushdi...")
 bot.infinity_polling()
+# Kodingizning eng oxiridagi qismni shunday o'zgartiring:
+bot.infinity_polling(timeout=10, long_polling_timeout=5)
