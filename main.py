@@ -21,24 +21,37 @@ def start(message):
     markup.add(btn)
     bot.send_message(message.chat.id, "Xush kelibsiz!", reply_markup=markup)
 
+import json
+from datetime import datetime
+# bot va boshqa importlar shu yerda bo'ladi...
+
 @bot.message_handler(content_types=['web_app_data'])
-def get_data(message): # 'message' mana shu yerda aniqlanishi shart
+def get_data(message):
     try:
         # Web App'dan kelgan JSON ma'lumotni o'qiymiz
         data = json.loads(message.web_app_data.data)
 
-        # Sana formatlash (import datetime yuqorida bo'lishi kerak)
+        # 1. Sana formatlash
         formatted_date = datetime.fromtimestamp(message.date).strftime('%d.%m.%Y %H:%M')
 
-        # Buyurtma matnini shakllantiramiz
-       res_text = (
+        # 2. Foydalanuvchi ismini olish
+        first_name = message.from_user.first_name if message.from_user.first_name else ""
+        last_name = message.from_user.last_name if message.from_user.last_name else ""
+        full_name = f"{first_name} {last_name}".strip()
+        
+        if not full_name:
+            full_name = "Mijoz"
+
+        # 3. Buyurtma matnini shakllantiramiz
+        # MUHIM: data.get() ichidagi 'product_name' Web App'dagi bilan bir xil bo'lishi kerak
+        res_text = (
             f"📦 Yangi buyurtma!\n\n"
-            f"👤 Foydalanuvchi: {message.from_user.first_name} {message.from_user.last_name}\n"
-            f"🕒 Sana: {formatted_date}\n\n"
+            f"👤 Foydalanuvchi: {full_name}\n"
+            f"⌚ Sana: {formatted_date}\n\n"
             f"📋 Buyurtma tafsilotlari:\n"
-            f" - Mahsulot: {data.get('product_name', 'Noma\'lum')}\n"
-            f" - Miqdor: {data.get('quantity', 'Noma\'lum')}\n"
-            f" - Narx: {data.get('price', 'Noma\'lum')} UZS\n"
+            f"- Mahsulot: {data.get('product_name', 'Nomaʼlum')}\n"
+            f"- Miqdor: {data.get('quantity', 'Nomaʼlum')}\n"
+            f"- Narx: {data.get('price', 'Nomaʼlum')} UZS\n"
         )
 
         # Foydalanuvchiga tasdiq xabarini yuboramiz
@@ -47,6 +60,8 @@ def get_data(message): # 'message' mana shu yerda aniqlanishi shart
     except Exception as e:
         # Xatolik yuz bersa, shu yer ishlaydi
         bot.send_message(message.chat.id, f"⚠️ Ma'lumotni qayta ishlashda xatolik: {e}")
+
+# Botni ishga tushirish qismi...
 # Botni ishga tushirish (bular funksiyadan tashqarida, eng chetda turishi kerak)
 while True:
     try:
