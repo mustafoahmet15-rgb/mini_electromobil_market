@@ -31,11 +31,14 @@ def get_data(message): # 'message' mana shu yerda aniqlanishi shart
         formatted_date = datetime.fromtimestamp(message.date).strftime('%d.%m.%Y %H:%M')
 
         # Buyurtma matnini shakllantiramiz
-        res_text = (
-            f"✅ Yangi Buyurtma qabul qilindi!\n\n"
-            f"💰 Jami summa: {data['total']} $\n"
-            f"👤 Mijoz: {message.from_user.first_name}\n" # '0' ni 'message.from_user.first_name' ga o'zgartiring
-            f"📅 Sana: {formatted_date}"
+       res_text = (
+            f"📦 Yangi buyurtma!\n\n"
+            f"👤 Foydalanuvchi: {message.from_user.first_name} {message.from_user.last_name}\n"
+            f"🕒 Sana: {formatted_date}\n\n"
+            f"📋 Buyurtma tafsilotlari:\n"
+            f" - Mahsulot: {data.get('product_name', 'Noma\'lum')}\n"
+            f" - Miqdor: {data.get('quantity', 'Noma\'lum')}\n"
+            f" - Narx: {data.get('price', 'Noma\'lum')} UZS\n"
         )
 
         # Foydalanuvchiga tasdiq xabarini yuboramiz
