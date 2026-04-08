@@ -26,3 +26,4 @@ def get_data(message):
 
 print("Bot ishga tushdi...")
 bot.infinity_polling()
+
